@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  root 'store#index', as: 'store'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  root 'home#show', as: 'home'
 
   resources :items, only: [:show, :index]
   resources :categories, only: [:show, :index]
