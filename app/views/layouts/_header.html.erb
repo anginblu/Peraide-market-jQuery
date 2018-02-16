@@ -1,8 +1,52 @@
-<nav class="">
-    <ul>
-        <li> <%= link_to "Store Home", store_path %> </li>
-        <% if !!@cart %>
-          <li> <%= link_to "Cart", cart_path(current_cart) %></li>
-        <% end %>
-    </ul>
-</nav>
+
+
+
+<div class="g_wrp clearfix">
+<div class="header_menu">
+
+<div class="cmpnents header-dropdown" id="myAccount">
+<span class="link header-open-icon">
+  <% if current_user %>
+    Signed in as <strong><%= current_user.name %></strong>!</span>
+  <% else %>
+    My Account</span>
+  <% end %>
+
+  <div class="dropdown myaccount">
+  	<div class="arrow" aria-hidden="true"></div>
+  	<ul>
+      <% if current_user %>
+        <li><%= link_to "Sign out", signout_path, id: "sign_out" %><li>
+      <% else %>
+        <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+      <% end %>
+  	</ul>
+    </div>
+  </div>
+
+
+<div class="cmpnents header-dropdown">
+<span class="header-open-icon link">Categories</span>
+
+<div class="dropdown categories">
+  <div class="arrow" aria-hidden="true"></div>
+  <ul>
+    <li>category1<li>
+    <li>category2<li>
+  </ul>
+  </div>
+</div>
+
+<div class="content-asset ps-content-wrap"><!-- dwMarker="content" dwContentID="e0671db4e3a9cf604961d6e0a8" -->
+<style type="text/css">.email-signup-box a {
+    font-size: 9px;
+    line-height: 10px;
+    color: #b6b6b6;
+    text-decoration: underline;
+}
+</style>
+</div>
+
+
+</div>
+</div>
