@@ -12,16 +12,13 @@ Online directory where viewers can find job seekers' profiles by job category.
 4. has_many :profiles
 5. has_many :profiles_categories, through: :profile
 6. has_many :categories, through: :profiles_categories
-7. has_many skills, through: categories
+7. has_many :skills, through: profiles
 
 ### Profiles
 1. belongs_to :user
 2. has_many :profiles_categories
-3. has_many :categories, through: :users_categories
-4. has_many skills, through: categories
-5. has_many :rates, through: :skills
-6. has_many :availability
-
+3. has_many :categories, through: :profiles_categories
+4. has_many :skills
 
 ### Profiles_categories
 1.	belongs_to :profile
@@ -33,12 +30,11 @@ Online directory where viewers can find job seekers' profiles by job category.
 2. has_many :profiles_categories
 3. has_many :profiles, through: :profiles_categories
 4. has_many :skills
-5. has_many :rates, through: :skills
 
 ### Skills
-1. Have a name, which is unique, and description (not mandatory)
+1. Have a name (must be present) and description (not mandatory)
 2. belongs_to :category
-3. belongs_to :user, through: :category
+3. belongs_to :profile
 4. Enables nested_attributes
 
 

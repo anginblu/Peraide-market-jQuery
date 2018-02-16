@@ -34,49 +34,9 @@ body {
   margin: 5px 0;
 }
 
-#header {
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 81px;
-    background-color: #ee3e3e;
-    z-index: 999;
-}
-
-#header .inner {
-    position: relative;
-    width: 1260px;
+.g_wrp {
     margin: 0 auto;
-    z-index: 1000;
-}
-
-#header .topArea {
-    height: 42px;
-}
-
-.mainNavi {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 38px;
-    margin: 0 auto;
-    background: #fff;
-    font-weight: bold;
-}
-
-.mainNavi > ul {
-    width: 1260px;
-    height: 38px;
-    margin: 0 auto;
-    background: #fff;
-}
-
-ul, menu, dir {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
+    position: static;
+    max-width: 980px;
+    box-sizing: border-box;
 }

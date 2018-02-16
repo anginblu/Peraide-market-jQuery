@@ -1,4 +1,16 @@
 class User < ActiveRecord::Base
+  has_many :profiles
+
+  has_many :skills, through: :profiles
+
+  has_many :profiles_categories, through: :profile
+  has_many :categories, through: :profiles_categories
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -9,4 +21,5 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
 end
