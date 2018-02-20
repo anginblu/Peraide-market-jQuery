@@ -1,0 +1,5 @@
+<% if current_user && current_user.profiles.include?(@profile) %>
+  <div>
+    <h4><%= link_to "Edit", edit_profile_path(@profile) %></h4>
+  </div>
+<% end %>

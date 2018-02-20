@@ -24,17 +24,15 @@ Online directory where viewers can find job seekers' profiles by job category.
 1.	belongs_to :profile
 2.	belongs_to :category
 
-
 ### Categories (admin access only)
 1. Have a name, which is unique
 2. has_many :profiles_categories
 3. has_many :profiles, through: :profiles_categories
-4. has_many :skills
 
 ### Skills
 1. Have a name (must be present) and description (not mandatory)
-2. belongs_to :category
-3. belongs_to :profile
+2. belongs_to :profile
+3. belongs_to :user, through: profile
 4. Enables nested_attributes
 
 

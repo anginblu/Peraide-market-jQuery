@@ -1,45 +1,39 @@
-<h2>Profile of <%= @profile.user.name %>, available from <%= @profile.user.available_from %> </h2>
+<h2>Profile of <%= @profile.user.name %> </h2>
 
-<div id="ProfilePage">
-    <div id="LeftCol">
-        <div id="Photo"></div>
-        <div id="ProfileOptions">
-        a
-        </div>
-    </div>
+<div id="Info">
+  <p>
+    <strong>Email:</strong>
+    <span><%=@profile.user.email%></span>
+  </p>
 
-    <div id="Info">
-        <p>
-            <strong>Name:</strong>
-            <span><%=@profile.user.name%></span>
-        </p>
-        <p>
-            <strong>Email:</strong>
-            <span><%=@profile.user.email%></span>
-        </p>
+  <p>
+    <strong>Hourly Rate:</strong>
+    <span>$ <%=@profile.user.hourly%></span>
+  </p>
 
-        <p>
-            <strong>Hourly Rate:</strong>
-            <span><%=@profile.user.hourly%></span>
-        </p>
+  <p>
+    <strong>Available From:</strong>
+    <span><%=@profile.user.available_from.strftime("%m/%d/%Y") %></span>
+  </p>
 
-        <%= @profile.categories.each do |category| %>
-          <p>
-              <strong>Category:</strong>
-              <span><%= category.name %></span>
-          </p>
-          <p>
-              <strong>Skills:</strong>
-              <% category.skills.each do |skill| %>
-                <ul>
-                  <li><span><%= skill.name %></span></li>
-                </ul>
-              <% end %>
-          </p>
-        <% end %>
+  <p>
+    <strong>Categories:</strong>
+    <span>
+      <%= @profile.categories.each do |category| %>
+        <%= category.name %><br>
+      <% end %>
+    </span>
+  </p>
 
-    </div>
+  <p>
+    <strong>Skills:</strong>
+    <span>
+      <% @profile.skills.each do |skill| %>
+        <%= skill.name %><br>
+      <% end %>
+    </span>
+  </p>
 
-    <!-- Needed because other elements inside ProfilePage have floats -->
-    <div style="clear:both"></div>
 </div>
+
+<%= render '/profiles/edit'%>

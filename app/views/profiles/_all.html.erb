@@ -7,11 +7,11 @@
 &nbsp;
 <div>
   <% @profiles.each do |profile| %>
-    <li>
-      <ul>
+    <ul>
+      <li>
         <h4><%= link_to "Profile No. #{profile.id}", profile %> by <%= profile.user.name %></h4>
-      </ul>
-    </li>
+      </li>
+    </ul>
   <% end %>
 </div>
 

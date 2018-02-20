@@ -1,7 +1,12 @@
-<h1><%= @category.name %></h1>
-
-<ul>
-<% @category.skills.each do |skill| %>
-    <li><%= link_to skill.name, skill %></li>
+<h2><%= @category.name %></h2>
+&nbsp;
+<% if @category.profiles.any? %>
+  <div>
+    <h4>Relevant User Profiles:</h4>
+    <h4>
+    <% @category.profiles.each do |profile| %>
+        <li>Profile of <%= link_to profile.user.name, profile %></li>
+    <% end %>
+    </h4>
+  </div>
 <% end %>
-</ul>

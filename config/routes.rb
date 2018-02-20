@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   get 'user/profiles', to: 'profiles#user_index', as: 'my_profiles'
 
-  resources :categories do
-    resources :skills
+  resources :categories, only: [:index]
+  resources :categories, only: [:show] do
+    resources :skills, only: [:show]
   end
 
   root 'home#show'
