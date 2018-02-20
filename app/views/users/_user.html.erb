@@ -1,0 +1,21 @@
+<% if @title %><h2><%= @title %></h2><% end %>
+
+<%= form_for @user do |f| %>
+  <div class="field"> <label for="user_name">Name</label><br>
+    <%= f.text_field :name, :value => @user.name %></div>
+  <div class="field"> <label for="user_email">Email</label><br>
+    <%= f.text_field :email %></div>
+
+  <div class="field"> <label for="user_password">Password</label><br>
+    <%= f.password_field :password %></div>
+  <div class="field"><%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %></div>
+
+  <div class="field"><label for="user_hourly">Hourly Rate (in $)</label><br>
+    <%= f.text_field :hourly, :value => @user.hourly, :class => 'text_field', :step => 0.01 %></div>
+    <div class="field"><label for="user_available_from">First Date Available:</label><br>
+      <%= f.date_field :available_from, :value => @user.available_from %></div>
+
+  <%= f.submit %>
+
+  <% end %>

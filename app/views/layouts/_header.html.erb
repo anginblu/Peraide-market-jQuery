@@ -1,52 +1,26 @@
 
 
-
-<div class="g_wrp clearfix">
-<div class="header_menu">
-
-<div class="cmpnents header-dropdown" id="myAccount">
-<span class="link header-open-icon">
-  <% if current_user %>
-    Signed in as <strong><%= current_user.name %></strong>!</span>
-  <% else %>
-    My Account</span>
-  <% end %>
-
-  <div class="dropdown myaccount">
-  	<div class="arrow" aria-hidden="true"></div>
-  	<ul>
+  <div class="dropdown">
+    <button class="dropbtn">myAccount</button>
+    <div class="dropdown-content">
       <% if current_user %>
-        <li><%= link_to "Sign out", signout_path, id: "sign_out" %><li>
+        <%= link_to "Edit My Account", edit_user_path(current_user) %>
+        <%= link_to "My Profiles", my_profiles_path %>
+        <%= link_to "Create Profile", new_profile_path %>
+        <%= link_to "Sign out", signout_path %>
       <% else %>
-        <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+        <%= link_to "Register", new_user_path %>
+        <%= link_to "Sign in", signin_path %>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
       <% end %>
-  	</ul>
     </div>
   </div>
 
-
-<div class="cmpnents header-dropdown">
-<span class="header-open-icon link">Categories</span>
-
-<div class="dropdown categories">
-  <div class="arrow" aria-hidden="true"></div>
-  <ul>
-    <li>category1<li>
-    <li>category2<li>
-  </ul>
+  <div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+      <%= link_to "Home", root_path %>
+      <%= link_to "Categories", categories_path %>
+      <%= link_to "Profiles", profiles_path %>
+    </div>
   </div>
-</div>
-
-<div class="content-asset ps-content-wrap"><!-- dwMarker="content" dwContentID="e0671db4e3a9cf604961d6e0a8" -->
-<style type="text/css">.email-signup-box a {
-    font-size: 9px;
-    line-height: 10px;
-    color: #b6b6b6;
-    text-decoration: underline;
-}
-</style>
-</div>
-
-
-</div>
-</div>

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  require 'securerandom'
+
   has_many :profiles
 
   has_many :skills, through: :profiles
@@ -16,6 +18,8 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
+      user.email = auth.info.email
+      user.password = SecureRandom.urlsafe_base64
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!

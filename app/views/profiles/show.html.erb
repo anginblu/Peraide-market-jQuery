@@ -1,0 +1,45 @@
+<h2>Profile of <%= @profile.user.name %>, available from <%= @profile.user.available_from %> </h2>
+
+<div id="ProfilePage">
+    <div id="LeftCol">
+        <div id="Photo"></div>
+        <div id="ProfileOptions">
+        a
+        </div>
+    </div>
+
+    <div id="Info">
+        <p>
+            <strong>Name:</strong>
+            <span><%=@profile.user.name%></span>
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <span><%=@profile.user.email%></span>
+        </p>
+
+        <p>
+            <strong>Hourly Rate:</strong>
+            <span><%=@profile.user.hourly%></span>
+        </p>
+
+        <%= @profile.categories.each do |category| %>
+          <p>
+              <strong>Category:</strong>
+              <span><%= category.name %></span>
+          </p>
+          <p>
+              <strong>Skills:</strong>
+              <% category.skills.each do |skill| %>
+                <ul>
+                  <li><span><%= skill.name %></span></li>
+                </ul>
+              <% end %>
+          </p>
+        <% end %>
+
+    </div>
+
+    <!-- Needed because other elements inside ProfilePage have floats -->
+    <div style="clear:both"></div>
+</div>

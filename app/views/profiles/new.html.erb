@@ -1,0 +1,29 @@
+<h2>New Profile for '<%= current_user.name %>'</h2>
+
+<%= form_for @profile, as: :profile, url: "/user/profiles", method: :post do |f| %>
+
+<h3> Categories: </h3>
+<div class="field">
+
+  <p><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %></p>
+
+</div>
+
+<div class="field">
+
+<h3> Skills: </h3>
+
+<%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %></p>
+  <p><%= f.fields_for :skills, @profile.skills.build do |skill_fields| %>
+    <%= skill_fields.label :name %><br>
+    <%= skill_fields.text_field :name %><br>
+    <%= skill_fields.label :description %><br>
+    <%= skill_fields.text_field :description %><br>
+        <!-- <input type="text" name="post[tags_attributes][name]" id= "Name"> -->
+  <% end %></p>
+
+</div>
+
+<%= f.submit %>
+
+<% end %>
