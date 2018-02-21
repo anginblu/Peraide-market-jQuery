@@ -1,7 +1,6 @@
 <h2>Skills</h2>
 &nbsp;
-<% @skills.each do |skill| %>
   <h4>
-    <li><%= link_to skill.profile, skill %></li>
+    <%= render 'skills/list'%>
   </h4>
 <% end %>

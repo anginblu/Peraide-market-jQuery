@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-
+  before_action :set_profile, only: [:edit, :update, :destroy]
   def index
     @profiles = Profile.all
   end
@@ -15,7 +15,8 @@ class ProfilesController < ApplicationController
   def new
     if current_user
       @profile = Profile.new(user_id: current_user.id)
-      setup_profile @profile
+      2.times { @profile.skills.build }
+      Rails.logger.debug("New method executed")
     else
       redirect_to root_path, alert: "Please log in first."
     end
@@ -23,52 +24,52 @@ class ProfilesController < ApplicationController
 
   def create
     # raise params.inspect
-    @profile = Profile.new(user_id: current_user.id)
-    @profile.update(profile_params)
-    if @profile
+    @profile = Profile.new(profile_params)
+    @profile.user_id = current_user.id
+    @object = @profile
+    if @profile.save
       redirect_to @profile, notice: "Successfully created a new profile for you."
     else
-      raise params.inspect
       redirect_to new_profile_path, alert: "Creation Failure! Please retry."
     end
   end
 
   def edit
-    set_profile
-    setup_profile @profile
+    if @profile.user != current_user
+      redirect_to @profile, alert: "You don't have the authority to edit this profile!"
+    end
   end
 
   def update
-    set_profile
-    @profile.title = params.require(:profile).require(:title).reject{|_, v| v.blank?}
-    @profile.category_ids = params.require(:profile).permit(category_ids: []).reject{|_, v| v.blank?}
-    @profile.skills_attributes = params.require(:profile).permit(skills_attributes: [:name, :_destroy]).reject{|_, v| v.blank?}
-    @profile.save
-    # binding.pry
-    redirect_to @profile, notice: "Successfully update your profile."
-
+    if @profile.update(profile_params)
+      # binding.pry
+      redirect_to @profile, notice: 'Your profile was successfully updated.'
+    else
+      # binding.pry
+      @object = @profile
+      redirect_to edit_profile_path(@profile), alert: "Creation Failure! Please retry."
+    end
   end
 
 
   def destroy
-   set_profile
-   @profile.destroy
-   redirect_to root_path, notice: "Profile destroyed!"
+    if @profile.user == current_user
+      @profile.delete
+      redirect_to root_path, notice: "Profile has been destroyed!"
+    else
+      # binding.pry
+      redirect_to @profile, alert: "You don't have the authority to delete this profile!"
+    end
  end
 
   private
 
   def profile_params
-    params.require(:profile).permit(:title, category_ids: [], skills_attributes: [:name, :_destroy]).reject{|_, v| v.blank?}
+    updated_profile_params = params.require(:profile).permit(:title, :hourly, :available_from, category_ids: [], skills_attributes: [:id, :name, :_destroy]).reject{|_, v| v.blank?}
   end
 
   def set_profile
     @profile = Profile.find_by(id: params[:id])
-  end
-  def setup_profile(profile)
-    profile.skills ||= Skill.new
-    3.times { profile.skills.build }
-    profile
   end
 
 end

@@ -6,14 +6,14 @@
 
   <p>
     <strong>Hourly Rate:</strong>
-    <span>$ <%=@profile.user.hourly%></span>
+    <span>$ <%=@profile.hourly%></span>
   </p>
 
   <p>
     <strong>Available From:</strong>
     <span>
-      <% if !@profile.user.available_from.nil? %>
-        <%=@profile.user.available_from.strftime("%m/%d/%Y") %>
+      <% if !@profile.available_from.nil? %>
+        <%=@profile.available_from.strftime("%m/%d/%Y") %>
       <% end %>
     </span>
   </p>
@@ -21,7 +21,7 @@
   <p>
     <strong>Categories:</strong>
     <span>
-      <%= @profile.categories.each do |category| %>
+      <% @profile.categories.each do |category| %>
         <%= category.name %><br>
       <% end %>
     </span>

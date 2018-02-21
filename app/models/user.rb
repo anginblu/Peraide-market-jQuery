@@ -14,9 +14,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  scope :cheapest, -> { order("users.hourly ASC LIMIT 1") }
-  scope :currently_available, -> { where( 'available_from <= ?', Date.today ) }
-  scope :in_category, -> { where( 'available_from <= ?', Date.today ) }
+  # # validates :available_from, not_in_past: true, if: 'available_from.present?'
+  #
+  #
+  # scope :cheapest, -> { order("users.hourly ASC LIMIT 1") }
+  # scope :currently_available, -> { where( 'available_from <= ?', Date.today ) }
+  # scope :in_category, -> { where( 'available_from <= ?', Date.today ) }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -31,13 +34,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def available_now?
-    self.available_from <= Date.today
-  end
 
-  def in_category(category)
-    self.profile.categories.include?(category)
-  end
+  # def available_from_cannot_be_in_the_past
+  #   if available_from.present? && available_from < Date.today
+  #     errors.add(:available_from, "can't be in the past")
+  #   end
+  # end
 
 
   #

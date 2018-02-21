@@ -6,19 +6,20 @@ Online directory where viewers can find job seekers' profiles by job category.
 ## Instructions
 
 ### Users
-1. Have name, email, password, hourly rate, and availability (date from)
+1. Have name, email, password
 2. Should be able to log in and log out with Google
-3. Allows a scope method: User.cheapest.in_category(@category) = User.cheapest + User.in_category(category)
-4. has_many :profiles
-5. has_many :profiles_categories, through: :profile
-6. has_many :categories, through: :profiles_categories
-7. has_many :skills, through: profiles
+3. has_many :profiles
+4. has_many :profiles_categories, through: :profile
+5. has_many :categories, through: :profiles_categories
+6. has_many :skills, through: profiles
 
 ### Profiles
-1. belongs_to :user
-2. has_many :profiles_categories
-3. has_many :categories, through: :profiles_categories
-4. has_many :skills
+1. Have hourly rate, and availability (date from)
+2. belongs_to :user
+3. has_many :profiles_categories
+4. has_many :categories, through: :profiles_categories
+5. has_many :skills
+6. Allows a scope method: Profile.cheapest.currently_available = User.cheapest + currently_available
 
 ### Profiles_categories
 1.	belongs_to :profile

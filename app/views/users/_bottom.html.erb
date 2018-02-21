@@ -1,0 +1,6 @@
+<% if current_user && current_user == @user %>
+  <div>
+    <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary" %><br>
+    <%= button_to "Destroy", @user,  method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+  </div>
+<% end %>

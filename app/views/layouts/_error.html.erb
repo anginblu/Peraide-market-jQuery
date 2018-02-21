@@ -1,0 +1,12 @@
+
+<% if !@object.nil? && @object.errors.any? %>
+  <div id="field_with_errors">
+    <h2><%= pluralize(@object.errors.count, "error") %> prohibited this object from being saved:</h2>
+
+    <ul>
+    <% @object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

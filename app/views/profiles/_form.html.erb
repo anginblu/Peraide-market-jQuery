@@ -1,29 +1,31 @@
 <%= form_for @profile do |f| %>
 
+  <%= render 'layouts/error' %>
+
   <div class="field">
     <h3><%= f.label :title %></h3>
     <p><%= f.text_field :title %></p>
   </div>
 
   <div class="field">
+
     <h3><%= f.label :categories %></h3>
     <p><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %></p>
+
+    <h3><%= f.label :hourly %></h3>
+    <p>$ <%= f.text_field :hourly, :value => @profile.hourly, step: 0.01, min: 0 %></p>
+
+    <h3><%= f.label :available_from %></h3>
+    <p><%= f.date_field :available_from %></p>
   </div>
 
-  <div class="field">
-    <h3><%= f.label :skills %></h3>
-    <%= f.fields_for :skills do |ff| %>
-    <div>
-      <%= ff.label :name %>
-      <%= ff.text_field :name %>
 
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
-    </div>
+  <h3><%= f.label :skills %></h3>
+  <%= f.fields_for :skills do |builder| %>
+    <%= render "skills_fields", :f => builder %>
   <% end %>
 
+<br>
 <%= f.submit %>
 
 <% end %>

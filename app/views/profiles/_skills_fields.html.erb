@@ -1,0 +1,14 @@
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+
+<% if f.object.persisted? %>
+
+  <div class="field">
+    <%= f.label :_destroy, "Remove Skill" %>
+    <%= f.check_box :_destroy %>
+  </div>
+
+<% end %>

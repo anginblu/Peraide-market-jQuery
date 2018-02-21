@@ -88,3 +88,10 @@ body {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}

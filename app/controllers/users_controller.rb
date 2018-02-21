@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :best, :destroy]
+
   def show
-    @user = User.find(params[:id])
+    @skills = @user.skills
+    @profiles = @user.profiles
   end
 
   def new
@@ -16,37 +19,34 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
-      redirect_to root_path, notice: "Successfully created a new user account."
+      redirect_to root_path, notice: "Successfully created a new user account. Welcome, #{@user.name}!"
     else
+      @object = @user
       redirect_to register_path, alert: "Sign up failure.  Please retry!"
     end
   end
 
   def edit
-    set_user
     @url = @user
   end
 
   def update
-    set_user
     @user.update(user_params)
     if @user.save
       redirect_to @user, notice: "Successfully updated your user account."
     else
+      @object = @user
       redirect_to edit_user_path(current_user), alert: "Please retry."
     end
   end
 
-  def best
-    @category = Category.find(params[:category_id])
-    @user = User.find(params[:user_id])
-    render 'show'
-  end
-
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to root_path, notice: "Successfully deleted an user account for #{@user.name}."
+    if current_user == @user
+      @user.destroy
+      redirect_to root_path, notice: "Successfully deleted an user account for #{@user.name}."
+    else
+      redirect_to signout_path, alert: "You don't have the authority to delete an user account for #{@user.name}!"
+    end
   end
 
 

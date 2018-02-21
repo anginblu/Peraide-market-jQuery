@@ -5,25 +5,16 @@
   </p>
 
   <p>
-    <strong>Hourly Rate:</strong>
-    <span>$ <%=@user.hourly%></span>
+    <strong>Profiles:</strong>
+    <span>
+      <%= render 'profiles/list'%>
+    </span>
   </p>
 
   <p>
-    <strong>Available From:</strong>
-    <span>
-      <% if !@user.available_from.nil? %>
-        <%=@user.available_from.strftime("%m/%d/%Y") %>
-      <% end %>
-    </span>
-  </p>
-  
-  <p>
     <strong>Skills:</strong>
     <span>
-      <% @user.skills.each do |skill| %>
-        <%= skill.name %><br>
-      <% end %>
+      <% render 'skills/list' %>
     </span>
   </p>
 

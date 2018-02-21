@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :destroy]
 
-  resources :profiles
+  resources :profiles, only: [:show, :edit, :update, :new, :create, :index]
+  resources :profiles, only: [:destroy], as: 'delete_profile'
 
   get 'user/profiles', to: 'profiles#user_index', as: 'my_profiles'
 
@@ -23,9 +24,6 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show] do
     resources :skills, only: [:show]
-    resources :users, only: [:show] do
-      get 'best', to: 'users#best'
-    end
   end
 
   root 'home#show'
