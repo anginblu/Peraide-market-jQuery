@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update, :destroy]
+  
   def index
     @profiles = Profile.all
   end
@@ -38,6 +39,7 @@ class ProfilesController < ApplicationController
     if @profile.user != current_user
       redirect_to @profile, alert: "You don't have the authority to edit this profile!"
     end
+    @profile.skills.build
   end
 
   def update

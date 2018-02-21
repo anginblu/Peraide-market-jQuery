@@ -1,3 +1,7 @@
-<% @skills.each do |skill| %>
-  <%= skill.name %><br>
+<% if @skills.empty? %>
+  <%= render 'skills/none'%>
+
+<% else %>
+  <%= render 'skills/sublist'%>
+
 <% end %>

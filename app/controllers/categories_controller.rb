@@ -7,7 +7,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @profiles = @category.profiles
-    @user = best_user(@category)
+    @skills = @category.skills
+    @profile = best_profile(@category)
   end
 
 

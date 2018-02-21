@@ -1,6 +1,6 @@
 
-  <% @profiles.each do |profile| %>
-      <ul>
-        <%= link_to "#{profile.title}", profile %> by <%= profile.user.name %> <% if profile.best_option? %>(BEST!) <% end %>
-      </ul>
-  <% end %>
+<% @profiles.each do |profile| %>
+  <li>
+    <%= link_to "#{profile.title}", profile %> by <%= profile.user.name %> <% if profile.best_option? %>(BEST!) <% end %>
+  </li><br>
+<% end %>

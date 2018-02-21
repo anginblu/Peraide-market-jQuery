@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
 
   resources :categories, only: [:show] do
-    resources :skills, only: [:show]
+    resources :skills, only: [:index, :show]
   end
 
   root 'home#show'

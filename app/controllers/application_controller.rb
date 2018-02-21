@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
     session.delete(:user_id)
   end
 
-  def best_user(category)
-    category.users.currently_available.cheapest
+  def best_profile(category)
+    category.profiles.currently_available.cheapest
   end
-  
-  helper_method :current_user, :logged_in?, :valid_user?, :best_user
+
+  helper_method :current_user, :logged_in?, :valid_user?, :best_profile
 
 
 end

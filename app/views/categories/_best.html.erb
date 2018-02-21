@@ -1,13 +1,12 @@
 
-<h4>Best Available User(s):</h4>
+<h4>Best Available Profiles:</h4>
+
 <h5>
 <div class="field">
-  <% best_user(@category).find_each do |user| %>
-    <ul>
-      <li>
-        <%= link_to user.name, category_user_best_path(@category, user) %>
-      </li>
-    </ul>
+  <% best_profile(@category).find_each do |profile| %>
+    <li>
+      <%= link_to profile.title, profile %>
+    </li><br>
   <% end %>
 </div>
 </h5>

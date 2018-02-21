@@ -1,4 +1,13 @@
 <div>
+
   <h4>Relevant User Profiles:</h4>
-    <%= render "profiles/list" %>
+    <%= render "profiles/list" %><br>
+
+  <h4>Relevant Skills:</h4>
+    <%= render "skills/list" %><br>
+
+  <% if best_profile(@category) %>
+    <%= render "categories/best" %><br>
+  <% end %>
+
 </div>
