@@ -6,4 +6,16 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['name'].blank? }, allow_destroy: true
   accepts_nested_attributes_for :skills, reject_if: proc { |attributes| attributes['name'].blank? }, allow_destroy: true
 
+  def available_now?
+    self.user.available_now?
+  end
+
+  def cheapest?
+    self.user.available_now?
+  end
+
+  def in_category(category)
+    self.categories.include?(category)
+  end
+
 end

@@ -1,21 +1,30 @@
-<% if @title %><h2><%= @title %></h2><% end %>
+<div id="Info">
+  <p>
+    <strong>Email:</strong>
+    <span><%=@user.email%></span>
+  </p>
 
-<%= form_for @user do |f| %>
-  <div class="field"> <label for="user_name">Name</label><br>
-    <%= f.text_field :name, :value => @user.name %></div>
-  <div class="field"> <label for="user_email">Email</label><br>
-    <%= f.text_field :email %></div>
+  <p>
+    <strong>Hourly Rate:</strong>
+    <span>$ <%=@user.hourly%></span>
+  </p>
 
-  <div class="field"> <label for="user_password">Password</label><br>
-    <%= f.password_field :password %></div>
-  <div class="field"><%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %></div>
+  <p>
+    <strong>Available From:</strong>
+    <span>
+      <% if !@user.available_from.nil? %>
+        <%=@user.available_from.strftime("%m/%d/%Y") %>
+      <% end %>
+    </span>
+  </p>
+  
+  <p>
+    <strong>Skills:</strong>
+    <span>
+      <% @user.skills.each do |skill| %>
+        <%= skill.name %><br>
+      <% end %>
+    </span>
+  </p>
 
-  <div class="field"><label for="user_hourly">Hourly Rate (in $)</label><br>
-    <%= f.text_field :hourly, :value => @user.hourly, :class => 'text_field', :step => 0.01 %></div>
-    <div class="field"><label for="user_available_from">First Date Available:</label><br>
-      <%= f.date_field :available_from, :value => @user.available_from %></div>
-
-  <%= f.submit %>
-
-  <% end %>
+</div>

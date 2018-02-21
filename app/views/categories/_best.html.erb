@@ -1,0 +1,8 @@
+<div>
+  <h4>Best Available User(s):</h4>
+    <% best_user(@category).find_each do |user| %>
+      <ul>
+        <%= link_to user.name, category_user_best_path(@category, user) %>
+      </ul>
+    <% end %>
+</div>

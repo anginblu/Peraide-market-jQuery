@@ -2,8 +2,8 @@
   <button class="dropbtn">Menu</button>
   <div class="dropdown-content">
     <%= link_to "Home", root_path %>
-    <%= link_to "Categories", categories_path %>
-    <%= link_to "Profiles", profiles_path %>
+    <%= link_to "All Categories", categories_path %>
+    <%= link_to "All Profiles", profiles_path %>
   </div>
 </div>
 
@@ -11,12 +11,12 @@
   <button class="dropbtn">myAccount</button>
   <div class="dropdown-content">
     <% if current_user %>
-      <%= link_to "Edit My Account", edit_user_path(current_user) %>
+      <%= link_to "My Account", current_user %>
       <%= link_to "My Profiles", my_profiles_path %>
       <%= link_to "Create Profile", new_profile_path %>
       <%= link_to "Sign out", signout_path %>
     <% else %>
-      <%= link_to "Register", new_user_path %>
+      <%= link_to "Register", register_path %>
       <%= link_to "Sign in", signin_path %>
       <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
     <% end %>

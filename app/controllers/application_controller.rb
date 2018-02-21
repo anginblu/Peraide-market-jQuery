@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def sign_in(user, scope: :user)
+    session[:user_id] = user.id
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -18,15 +22,15 @@ class ApplicationController < ActionController::Base
     User.find_by(email: params[:user][:email]).valid_password?(params[:user][:password])
   end
 
-  def sign_in(user)
-    session[:user_id] = user.id
-  end
-
   def sign_out
     session.delete(:user_id)
   end
 
-  helper_method :current_user, :logged_in?, :valid_user?
+  def best_user(category)
+    category.users.currently_available.cheapest
+  end
+  
+  helper_method :current_user, :logged_in?, :valid_user?, :best_user
 
 
 end

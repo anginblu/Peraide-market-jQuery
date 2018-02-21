@@ -1,39 +1,5 @@
-<h2>Profile of <%= @profile.user.name %> </h2>
+<h2><%= @profile.title %> by '<%= @profile.user.name %>' </h2>
 
-<div id="Info">
-  <p>
-    <strong>Email:</strong>
-    <span><%=@profile.user.email%></span>
-  </p>
+<%= render '/profiles/profile'%>
 
-  <p>
-    <strong>Hourly Rate:</strong>
-    <span>$ <%=@profile.user.hourly%></span>
-  </p>
-
-  <p>
-    <strong>Available From:</strong>
-    <span><%=@profile.user.available_from.strftime("%m/%d/%Y") %></span>
-  </p>
-
-  <p>
-    <strong>Categories:</strong>
-    <span>
-      <%= @profile.categories.each do |category| %>
-        <%= category.name %><br>
-      <% end %>
-    </span>
-  </p>
-
-  <p>
-    <strong>Skills:</strong>
-    <span>
-      <% @profile.skills.each do |skill| %>
-        <%= skill.name %><br>
-      <% end %>
-    </span>
-  </p>
-
-</div>
-
-<%= render '/profiles/edit'%>
+<%= render '/profiles/bottom'%>

@@ -1,7 +1,3 @@
 <h2>Categories</h2>
 &nbsp;
-<% @categories.each do |category| %>
-  <h4>
-    <li><%= link_to category.name, category %></li>
-  </h4>
-<% end %>
+<%= render 'categories/list' %>

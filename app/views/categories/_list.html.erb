@@ -1,0 +1,7 @@
+<div class="field">
+  <% @categories.each do |category| %>
+    <h4>
+      <li><%= link_to category.name, category %> with <%= category.profile_size %> profiles </li>
+    </h4>
+  <% end %>
+</div>

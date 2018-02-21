@@ -1,12 +1,7 @@
 <h2><%= @category.name %></h2>
 &nbsp;
-<% if @category.profiles.any? %>
-  <div>
-    <h4>Relevant User Profiles:</h4>
-    <h4>
-    <% @category.profiles.each do |profile| %>
-        <li>Profile of <%= link_to profile.user.name, profile %></li>
-    <% end %>
-    </h4>
-  </div>
+<%= render "categories/sublist" %>
+<br>
+<% if best_user(@category) %>
+  <%= render "categories/best" %>
 <% end %>

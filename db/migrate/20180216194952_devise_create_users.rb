@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :uid
       t.string :name
       t.decimal :hourly, precision: 10, scale: 2
-      t.datetime :available_from
+      t.date :available_from, default: Date.today
       t.string :oauth_token
       t.datetime :oauth_expires_at
 

@@ -1,0 +1,11 @@
+<h5>
+<div class="field">
+  <% @profiles.each do |profile| %>
+    <ul>
+      <li>
+        <%= link_to "#{profile.title}", profile %> by <%= profile.user.name %> <% if profile.user.available_now? %>(available today) <% end %>
+      </li>
+    </ul>
+  <% end %>
+</div>
+</h5>

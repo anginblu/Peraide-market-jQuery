@@ -1,0 +1,39 @@
+<div id="Info">
+  <p>
+    <strong>Email:</strong>
+    <span><%=@profile.user.email%></span>
+  </p>
+
+  <p>
+    <strong>Hourly Rate:</strong>
+    <span>$ <%=@profile.user.hourly%></span>
+  </p>
+
+  <p>
+    <strong>Available From:</strong>
+    <span>
+      <% if !@profile.user.available_from.nil? %>
+        <%=@profile.user.available_from.strftime("%m/%d/%Y") %>
+      <% end %>
+    </span>
+  </p>
+
+  <p>
+    <strong>Categories:</strong>
+    <span>
+      <%= @profile.categories.each do |category| %>
+        <%= category.name %><br>
+      <% end %>
+    </span>
+  </p>
+
+  <p>
+    <strong>Skills:</strong>
+    <span>
+      <% @profile.skills.each do |skill| %>
+        <%= skill.name %><br>
+      <% end %>
+    </span>
+  </p>
+
+</div>

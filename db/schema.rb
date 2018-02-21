@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180216195530) do
   end
 
   create_table "profiles", force: :cascade do |t|
+    t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,21 +45,21 @@ ActiveRecord::Schema.define(version: 20180216195530) do
     t.string   "uid"
     t.string   "name"
     t.decimal  "hourly",                 precision: 10, scale: 2
-    t.datetime "available_from"
+    t.date     "available_from",                                  default: '2018-02-21'
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.string   "email",                                           default: "", null: false
-    t.string   "encrypted_password",                              default: "", null: false
+    t.string   "email",                                           default: "",           null: false
+    t.string   "encrypted_password",                              default: "",           null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   default: 0,  null: false
+    t.integer  "sign_in_count",                                   default: 0,            null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
