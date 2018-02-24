@@ -20,9 +20,9 @@ Rails.application.routes.draw do
 
   get 'user/profiles', to: 'profiles#user_index', as: 'my_profiles'
 
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
 
-  resources :categories, only: [:show] do
+  resources :profiles, only: [:show] do
     resources :skills, only: [:index, :show]
   end
 

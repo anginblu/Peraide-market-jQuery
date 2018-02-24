@@ -2,32 +2,34 @@
 
 #Info
 {
-    width: 400px;
-    text-align: center;
+  width: 400px;
+  text-align: center;
 
-    /* Move it to the right */
-    float: center;
+  /* Move it to the right */
+  float: center;
 
-/* For visibility. Delete me */
-border: 1px solid blue;
+  /* For visibility. Delete me */
+  border: 1px solid blue;
+
+
 }
 
 #Info strong
 {
-    /* Give it a width */
-    display: inline-block;
-    width: 100px;
+  /* Give it a width */
+  display: inline-block;
+  width: 100px;
 
-/* For visibility. Delete me */
-border: 1px solid orange;
+  /* For visibility. Delete me */
+  border: 1px solid orange;
 }
 
 #Info span
 {
-    /* Give it a width */
-    display: inline-block;
-    width: 250px;
+  /* Give it a width */
+  display: inline-block;
+  width: 250px;
 
 /* For visibility. Delete me */
-border: 1px solid purple;
+  border: 1px solid purple;
 }

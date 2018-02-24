@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
   has_many :profiles, through: :profiles_categories
   has_many :skills, through: :profiles
   has_many :users, through: :profiles
+  validates :name, presence: true
 
 
   def self.with_profile
@@ -15,5 +16,7 @@ class Category < ActiveRecord::Base
   def profile_size
     self.profiles.size
   end
+
+  
 
 end

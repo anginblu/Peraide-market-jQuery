@@ -1,6 +1,6 @@
 
-<% @skills.each do |skill| %>
-  <li>
-    <%= link_to skill.name, category_skill_path(@category, skill) %>
-  </li><br>
-<% end %>
+  <% @skills.each do |skill| %>
+    <li>
+      <%= link_to skill.name, profile_skill_path(skill.profile, skill) %>
+    </li><br>
+  <% end %>

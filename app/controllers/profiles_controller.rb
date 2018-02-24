@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update, :destroy]
-  
+
   def index
     @profiles = Profile.all
   end
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   def new
     if current_user
       @profile = Profile.new(user_id: current_user.id)
-      2.times { @profile.skills.build }
+      2.times { @profile.categories.build; @profile.skills.build }
       Rails.logger.debug("New method executed")
     else
       redirect_to root_path, alert: "Please log in first."
@@ -24,18 +24,21 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    # raise params.inspect
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     @object = @profile
     if @profile.save
       redirect_to @profile, notice: "Successfully created a new profile for you."
     else
-      redirect_to new_profile_path, alert: "Creation Failure! Please retry."
+      errors = @profile.errors.full_messages
+      # flash[:alert] = "Creation Failure! Please retry."
+      render 'profiles/new'
     end
   end
 
   def edit
+    @profile.categories.build
+    @profile.skills.build
     if @profile.user != current_user
       redirect_to @profile, alert: "You don't have the authority to edit this profile!"
     end
@@ -48,8 +51,9 @@ class ProfilesController < ApplicationController
       redirect_to @profile, notice: 'Your profile was successfully updated.'
     else
       # binding.pry
-      @object = @profile
-      redirect_to edit_profile_path(@profile), alert: "Creation Failure! Please retry."
+      errors = @profile.errors.full_messages
+      # flash[:alert] = "Editing Failure! Please retry."
+      render 'profiles/edit'
     end
   end
 
@@ -67,7 +71,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    updated_profile_params = params.require(:profile).permit(:title, :hourly, :available_from, category_ids: [], skills_attributes: [:id, :name, :_destroy]).reject{|_, v| v.blank?}
+    params.require(:profile).permit(:title, :hourly, :available_from, categories_attributes: [:id, :name, :_destroy], category_ids: [], skills_attributes: [:id, :name, :_destroy]).reject{|_, v| v.blank?}
   end
 
   def set_profile

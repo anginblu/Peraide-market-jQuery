@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180216195530) do
     t.string   "title"
     t.integer  "user_id"
     t.decimal  "hourly",         precision: 10, scale: 2
-    t.date     "available_from",                          default: '2018-02-21'
+    t.date     "available_from",                          default: Date.today
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
   end

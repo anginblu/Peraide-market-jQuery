@@ -1,6 +1,6 @@
 <%= form_for @profile do |f| %>
 
-  <%= render 'layouts/error' %>
+  <%= render 'profiles/error'%>
 
   <div class="field">
     <h3><%= f.label :title %></h3>
@@ -9,7 +9,16 @@
 
   <div class="field">
 
-    <h3><%= f.label :categories %></h3>
+    <fieldset>
+      <h3>Categories:</h3>
+      <h5>Create new categories and associate them with this profile:</h5>
+        <%= f.fields_for :categories do |builder| %>
+          <%= render "nested_fields", :f => builder %>
+        <% end %>
+        <br>
+    </fieldset>
+
+    <h5>...or choose from existing categories in the database</h5>
     <p><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %></p>
 
     <h3><%= f.label :hourly %></h3>
@@ -22,7 +31,7 @@
 
   <h3><%= f.label :skills %></h3>
   <%= f.fields_for :skills do |builder| %>
-    <%= render "skills_fields", :f => builder %>
+    <%= render "nested_fields", :f => builder %>
   <% end %>
 
 <br>

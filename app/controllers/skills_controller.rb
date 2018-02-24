@@ -13,8 +13,8 @@ class SkillsController < ApplicationController
   end
 
   private
-  def set_category
-    @category= Category.find(params[:category_id])
+  def set_profile
+    @profile= Profile.find(params[:profile_id])
   end
 
   def set_skill
