@@ -1,9 +1,9 @@
 
-<h4>Best Available Profiles:</h4>
+<h4>Best Available Profile:</h4>
 
 <h5>
 <div class="field">
-  <% best_profile(@category).find_each do |profile| %>
+  <% best_profile(@category).each do |profile| %>
     <li>
       <%= link_to profile.title, profile %>
     </li><br>

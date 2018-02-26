@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def sign_in(user, scope: :user)
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
   end
 
   def current_user
@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_user?
-    User.find_by(email: params[:user][:email]).valid_password?(params[:user][:password])
+    if @user = User.find_by(email: params[:user][:email])
+      User.find_by(email: params[:user][:email]).valid_password?(params[:user][:password])
+    else
+      false
+    end
   end
 
   def sign_out

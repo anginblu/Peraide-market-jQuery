@@ -30,7 +30,7 @@ class Profile < ActiveRecord::Base
   end
 
   def cheapest?
-    Profile.cheapest.where(id: self.id).any?
+    Profile.cheapest.include?(self)
   end
 
   def best_option?
