@@ -37,8 +37,8 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile.categories.build
-    @profile.skills.build
+    @profile.categories.build if @profile.categories.empty?
+    @profile.skills.build if @profile.skills.empty?
     if @profile.user != current_user
       redirect_to @profile, alert: "You don't have the authority to edit this profile!"
     end

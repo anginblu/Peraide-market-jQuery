@@ -12,8 +12,11 @@
     <fieldset>
       <h3>Categories:</h3>
       <h5>Create new categories and associate them with this profile:</h5>
-        <%= f.fields_for :categories do |builder| %>
-          <%= render "nested_fields", :f => builder %>
+        <%= f.fields_for :categories do |category_fields| %>
+          <div class="field">
+            <%= category_fields.label :name %><br>
+            <%= category_fields.text_field :name, :value => '' %>
+          </div>
         <% end %>
         <br>
     </fieldset>
@@ -30,8 +33,8 @@
 
 
   <h3><%= f.label :skills %></h3>
-  <%= f.fields_for :skills do |builder| %>
-    <%= render "nested_fields", :f => builder %>
+  <%= f.fields_for :skills do |skill_fields| %>
+    <%= render "nested_fields", :f => skill_fields %>
   <% end %>
 
 <br>

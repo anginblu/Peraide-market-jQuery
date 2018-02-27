@@ -11,24 +11,6 @@ class CategoriesController < ApplicationController
     @profile = best_profile(@category)
   end
 
-  def new
 
-  end
-
-  def create
-
-  end
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
-  end 
 
 end
