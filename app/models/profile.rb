@@ -3,6 +3,7 @@ class Profile < ActiveRecord::Base
   has_many :profiles_categories
   has_many :categories, through: :profiles_categories
   has_many :skills
+  has_many :comments
 
   validates :title, presence: true
   validates :hourly, presence: true

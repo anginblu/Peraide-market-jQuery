@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216195530) do
+ActiveRecord::Schema.define(version: 20180417185949) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180216195530) do
     t.string   "title"
     t.integer  "user_id"
     t.decimal  "hourly",         precision: 10, scale: 2
-    t.date     "available_from",                          default: Date.today
+    t.date     "available_from",                          default: '2018-04-17'
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
   end
@@ -31,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180216195530) do
   create_table "profiles_categories", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "category_id"
+    t.string   "content"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :profiles
 
+  has_many :comments
+
   has_many :skills, through: :profiles
 
   has_many :profiles_categories, through: :profiles
