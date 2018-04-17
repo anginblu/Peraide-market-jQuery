@@ -1,0 +1,13 @@
+<%= form_for comment do %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="comment-form">
+    <%= f.label "Comment Content: " %><%= f.text_field :content %>
+  </div>
+
+  <div id="new_form"></div>
+
+  <button id="button" data-url=profile_comments_path >Submit Comment</button>
+
+
+<% end %>

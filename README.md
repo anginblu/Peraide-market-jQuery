@@ -36,6 +36,11 @@ Online directory where viewers can find job seekers' profiles by job category.
 3. belongs_to :user, through: profile
 4. Enables nested_attributes
 
+## Installation
+1. Fork and clone repo
+2. Migrate db
+3. Bundle install
+
 
 
 For more information, check out [`:class_name`][class_name] and [`:foreign_key`][foreign_key] in the RailsGuides entry on [Active Record Associations][RailsGuides], this [StackOverflow post][StackOverflow], and the `models/post.rb` section in this [SitePoint refresher][SitePoint].

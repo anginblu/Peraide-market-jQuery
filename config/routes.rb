@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:show] do
     resources :skills, only: [:index, :show]
+    resources :comments, only: [:index, :show, :create]
   end
 
   root 'home#show'
