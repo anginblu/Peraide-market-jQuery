@@ -15,6 +15,10 @@ class CommentsController < ApplicationController
   def new
     @comment = @profile.comments.new
     render layout: false
+    # respond_to do |f|
+    #   f.js {render 'new.js', layout: false}
+    #   f.html {render 'new.html', layout: false}
+    # end
   end
 
   def create

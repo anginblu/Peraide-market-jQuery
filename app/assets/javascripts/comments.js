@@ -8,18 +8,34 @@ function attachListeners() {
     loadComments(commentsLink)
     e.preventDefault();
   });
+
   $("button.add_review").on('click', function(e) {
-    var formLink = $("button.add_review").attr("id")
+
+    var formLink = $("button.add_review").attr("id");
     $.get(`${formLink}`).success(function(data){
-      // var $button = $(this);
-      // $button.before(data);
-      $("div.comments_form").html(data);
-    }).error(function(){alert("Loading Error!")});
+        $("div.comments_form").html(data);
+      }).error(function(){alert("Loading Error!")
+    });
+    $("#new_comment").on("subimt", newComment(e));
+
+    // var source = $("#comment-template").text;
+    // var template = Handlebars.compile(source);
+    // $("div.comments_form").html(template);
+
     e.preventDefault();
+
   });
+}
 
-  $('#sort').on('click', () => sortComments());
-
+function newComment(e){
+  url = this.action
+  data = {
+    'authenticity_token': $("input[name='authenticity_token']").value(),
+    'comment': {
+      'content': $("#commment_content").value()
+    }
+    // debugger
+  }
 }
 
 function loadComments(commentsLink){

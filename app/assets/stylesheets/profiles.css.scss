@@ -33,3 +33,33 @@
 /* For visibility. Delete me */
   border: 1px solid purple;
 }
+
+.comments
+{
+  display: block;
+  position: relative;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.comment-form
+{
+  display: block;
+  position: relative;
+  padding-top: 10px;
+}
+
+#comments ol
+{
+  display: block;
+  position: relative;
+  padding-left: 65px;
+  border-top: 1px solid #ddd;
+}
+
+#comments .content
+{
+  padding: 0px 3px;
+  padding-bottom: 12px;
+  padding-top: 8px;
+}

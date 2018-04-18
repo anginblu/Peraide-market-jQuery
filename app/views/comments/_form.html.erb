@@ -1,12 +1,12 @@
-<%= form_for @comment, url: profile_comments_path(@profile), method: :post do |f| %>
+<!-- <script id="comment-template" type="text/x-handlebars-template"> -->
 
-  <div class="comment-form">
-    <%= f.label "New review: " %><%= f.text_field :content %>
-    <button class="submit_comment" data-url=profile_comments_path >Submit</button>
-  </div>
-
-<% end %>
-
-<!-- <% if !!current_user %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-<% end %> -->
+<div class="comment-form">
+  <%= form_for @comment, url: profile_comments_path(@profile), method: :post do |f| %>
+    <!-- <% if !!current_user %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+    <% end %> -->
+    <%= f.label "New comment: " %><%= f.text_field :content %>
+    <%= f.submit %>
+  <% end %>
+</div>
+<!-- </script> -->
