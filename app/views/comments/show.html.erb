@@ -1,0 +1,9 @@
+<p>
+    <strong>Reviews</strong>
+</p>
+
+<ol>
+  <% @profile.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ol>

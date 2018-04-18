@@ -1,0 +1,9 @@
+<p>
+    <strong>Reviews</strong>
+</p>
+
+<ol>
+  <% @profile.comments.each do |comment| %>
+    <li><%= comment.content %> from <%= comment.created_at.strftime("%m/%d/%Y") %></li>
+  <% end %>
+</ol>
