@@ -22,10 +22,12 @@ class CommentsController < ApplicationController
   def create
     @comment = @profile.comments.new(comment_params)
     @comment.user_id = current_user
-    if @comment.save
+    if current_user
+      @comment.user_id = current_user
       render json: comment, status: 201
     else
-      render
+      redirect_to @profile, alert: "Please log in first."
+    end
   end
 
   def update
