@@ -1,12 +1,12 @@
-<%= form_for comment do %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+<%= form_for @comment, url: profile_comments_path(@profile), method: :post do |f| %>
 
   <div class="comment-form">
-    <%= f.label "My review: " %><%= f.text_field :content %>
+    <%= f.label "New review: " %><%= f.text_field :content %>
+    <button class="submit_comment" data-url=profile_comments_path >Submit</button>
   </div>
 
-
-  <button id="button" data-url=profile_comments_path >Submit Comment</button>
-
-
 <% end %>
+
+<!-- <% if !!current_user %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+<% end %> -->

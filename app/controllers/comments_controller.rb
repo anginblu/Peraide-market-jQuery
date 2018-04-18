@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-
-  before_action :set_profile, only: [:index, :show, :update]
+  before_action :set_profile, only: [:index, :show, :new, :create, :update]
 
   def index
     comments = @profile.comments
@@ -14,20 +13,18 @@ class CommentsController < ApplicationController
   end
 
   def new
-    if !current_user
-      redirect_to root_path, alert: "Please log in first."
-    end
+    @comment = @profile.comments.new
+    render layout: false
   end
 
   def create
-    @comment = @profile.comments.new(comment_params)
-    @comment.user_id = current_user
-    if current_user
-      @comment.user_id = current_user
-      render json: comment, status: 201
-    else
-      redirect_to @profile, alert: "Please log in first."
-    end
+    @comment = @profile.comments.create(comment_params)
+    # if !!current_user
+    #   @comment.user_id = current_user
+      render json: @comment, status: 201
+    # else
+    #   redirect_to @profile, alert: "Please log in first."
+    # end
   end
 
   def update
