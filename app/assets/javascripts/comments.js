@@ -23,7 +23,7 @@ function attachListeners() {
 }
 
 function loadComments(commentsLink){
-  $("div#comments").empty();
+  $("div.comments").empty();
   $.get(`${commentsLink}`).success(function(comments){
     comments.forEach(displayComments);
   }).error(function(){alert("Loading Error!")});
@@ -31,7 +31,7 @@ function loadComments(commentsLink){
 
 function displayComments(comment){
   var commentList = `<li>"${comment.content}" from ${simplifyDate(comment.created_at)}</li><br>`;
-  $("div#comments").append(commentList);
+  $("div.comments").append(commentList);
 }
 
 function simplifyDate(date) {
