@@ -24,9 +24,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @profile.comments.build(comment_params)
     if @comment.save
-      redirect_to @profile
+      render "comments/show", layout: false
     else
-      render "comments/show"
+      redirect_to @profile, alert: "Unsuccessful."
+    end
     # if !!current_user
     #   @comment.user_id = current_user
       # render json: @comment, status: 201

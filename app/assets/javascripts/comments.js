@@ -35,7 +35,7 @@ function clickSubmit(){
     url: url,
     data: data,
     success: function(response){
-      debugger
+      $$("div.comments > ol").append(response)
     }
   });
 }
