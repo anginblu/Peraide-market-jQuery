@@ -49,15 +49,16 @@
   padding-top: 10px;
 }
 
-#comments ol
+.comments ol
 {
-  display: block;
+  width: 450px;
+  display: inline-block;
   position: relative;
-  padding-left: 65px;
-  border-top: 1px solid #ddd;
+  padding-left: 20px;
+  border: 1px solid #ddd;
 }
 
-#comments .content
+.comments .content
 {
   padding: 0px 3px;
   padding-bottom: 12px;

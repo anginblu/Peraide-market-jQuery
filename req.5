@@ -1,0 +1,30 @@
+Javascript model object:
+
+function Post(title, content){
+  this.title = title;
+  this.content = content;
+};
+
+$.get('https://api.github.com/users/cernanb', function(data){
+
+  var newPost = new Post(data.title, data.content);
+  Post.prototype.renderTitle = function(){
+    return `<h2>'Title': ${this.title}</h2>`
+  }
+});
+
+var newPost = new Post("My Post", "This is my first post.");
+
+newPost.renderTitle()
+ // this = newPost
+//$('#title').append(newPost.renderTitle())
+console.log(newPost);
+
+
+
+var items = [{name: "XBox", price: 299}, {name: "socks", price: 10}]
+const sortedItems = items.sort(function(a, b) {return b.price - a.price})
+console.log(sortedItems)
+
+
+new Date(xx.created_at)  <==create a javascript time object

@@ -39,17 +39,14 @@ function newComment(e){
 }
 
 function loadComments(commentsLink){
-  $("div.comments").empty();
+  $("div.comments").html("<ol><h5>Reviews</h5></ol>")
   $.get(`${commentsLink}`).success(function(comments){
     comments.forEach(displayComments);
   }).error(function(){alert("Loading Error!")});
 }
 
 function displayComments(comment){
-  var commentList = `<li>"${comment.content}" from ${simplifyDate(comment.created_at)}</li><br>`;
-  $("div.comments").append(commentList);
-}
-
-function simplifyDate(date) {
-  return date.slice(0, 10)
+  var date = new Date(comment.created_at);
+  var commentList = `<li>"${comment.content}" from ${moment(date).format('MMMM Do YYYY, h:mm:ss a')}</li>`;
+  $("div.comments > ol").append(commentList);
 }

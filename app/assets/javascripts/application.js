@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//=require moment
 //= require jquery_ujs
 //= require bootstrap
 //= require comments
