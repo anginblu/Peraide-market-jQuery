@@ -5,7 +5,6 @@ $(function(){
 function attachListeners() {
   $("button.load_reviews").on('click', () => clickLoad());
   $("button.add_review").on('click', () => clickAdd());
-  $("#new_comment").on("subimt", () => clickSubmit());
 }
 
 function clickLoad(){
@@ -14,31 +13,51 @@ function clickLoad(){
 }
 
 function clickAdd(){
-    var formLink = $("button.add_review").attr("id");
-    $.get(`${formLink}`).success(function(data){
-        $("div.comments_form").html(data);
-      }).error(function(){alert("Loading Error!")
-      e.preventDefault();
+  var formLink = $("button.add_review").attr("id");
+  $.get(`${formLink}`).success(function(data){
+      $("div.comments_form").html(data);
+      $("form#new_comment").on("submit", function(e){
+        var url = $("form#new_comment").attr("action");
+        alert("You clicked submit!");
+        var data = {
+          'authenticity_token': $("input[name='authenticity_token']").attr("value"),
+          'comment': {
+            'content': $("input#comment_content").val()
+          }
+        };
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          success: function(response){
+            $("div.comments > ol").append(response)
+          }
+        });
+        e.preventDefault();
+      });
+    }).error(function(){alert("Loading Error!")
   });
 }
-
-function clickSubmit(){
-  url = this.action;
-  data = {
-    'authenticity_token': $("input[name='authenticity_token']").attr("value"),
-    'comment': {
-      'content': $("#commment_content").val()
-    }
-  };
-  $.ajax({
-    type: "POST",
-    url: url,
-    data: data,
-    success: function(response){
-      $$("div.comments > ol").append(response)
-    }
-  });
-}
+//
+// function clickSubmit(e){
+//     var url = $("form#new_comment").attr("action");
+//     alert("You clicked submit!");
+//     var data = {
+//       'authenticity_token': $("input[name='authenticity_token']").attr("value"),
+//       'comment': {
+//         'content': $("input#comment_content").val()
+//       }
+//     };
+//     $.ajax({
+//       type: "POST",
+//       url: url,
+//       data: data,
+//       success: function(response){
+//         $$("div.comments > ol").append(response)
+//       }
+//     });
+//     e.preventDefault();
+// }
 
 function loadComments(commentsLink){
   $("div.comments").html("<ol><h5>Reviews</h5></ol>")
@@ -52,7 +71,7 @@ function loadComments(commentsLink){
 
 function displayComments(comment){
   var date = new Date(comment.created_at);
-  var commentList = `<li>"${comment.content}" from ${moment(date).format('MMMM Do YYYY, h:mm:ss a')}</li>`;
+  var commentList = `<li>"${comment.content}" from ${moment(date).format('ll')}</li>`;
   $("div.comments > ol").append(commentList);
 }
 
