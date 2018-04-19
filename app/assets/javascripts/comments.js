@@ -1,41 +1,43 @@
 $(function(){
-  attachListeners()
+  attachListeners();
 })
 
 function attachListeners() {
-  $("button.load_reviews").on('click', function(e) {
+  $("button.load_reviews").on('click', () => clickLoad());
+  $("button.add_review").on('click', () => clickAdd());
+  $("#new_comment").on("subimt", () => clickSubmit());
+}
+
+function clickLoad(){
     var commentsLink = $("button.load_reviews").attr("id")
     loadComments(commentsLink)
-    e.preventDefault();
-  });
+}
 
-  $("button.add_review").on('click', function(e) {
-
+function clickAdd(){
     var formLink = $("button.add_review").attr("id");
     $.get(`${formLink}`).success(function(data){
         $("div.comments_form").html(data);
       }).error(function(){alert("Loading Error!")
-    });
-    $("#new_comment").on("subimt", newComment(e));
-
-    // var source = $("#comment-template").text;
-    // var template = Handlebars.compile(source);
-    // $("div.comments_form").html(template);
-
-    e.preventDefault();
-
+      e.preventDefault();
   });
 }
 
-function newComment(e){
-  url = this.action
+function clickSubmit(){
+  url = this.action;
   data = {
     'authenticity_token': $("input[name='authenticity_token']").attr("value"),
     'comment': {
-      'content': $("#commment_content").attr("value")
+      'content': $("#commment_content").val()
     }
-    // debugger
-  }
+  };
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: data,
+    success: function(response){
+      debugger
+    }
+  });
 }
 
 function loadComments(commentsLink){
