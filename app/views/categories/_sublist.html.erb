@@ -8,8 +8,6 @@
 <div id="profile">
   <% if @profiles %>
   <p>
-    <% @profiles.each do |profile| %>
-      <button id=<%=best_profile_path(profile)%> class= "show_profile">View the best profile</button><br>
-    <% end %>
+    <button id=<%=best_profile_path(@profile)%> class= "show_profile">View the best profile</button><br>
   </p>
   <% end %>

@@ -5,13 +5,19 @@ $(function(){
 function attachCommentsListeners() {
   $("button.load_reviews").on('click', () => clickLoad());
   $("button.add_review").on('click', () => clickAdd());
+  $("button.most_recent").on('click', () => clickMostRecent());
 }
 
 //1. render at least one index page via jQuery and an Active Model Serialization JSON Backend
 // 3. reveal at least one has-many relationship in the JSON
 function clickLoad(){
     var commentsLink = $("button.load_reviews").attr("id")
-    loadComments(commentsLink)
+    loadComments(commentsLink);
+}
+//2. Must render at least one show page (show resource - 'one specific thing') via jQuery and an Active Model Serialization JSON Backend
+function clickMostRecent(){
+    var commentsLink = $("button.load_reviews").attr("id")
+    loadBest(commentsLink);
 }
 
 //4. use your Rails API and a form to create a resource and render the response without a page refresh
@@ -72,3 +78,36 @@ Comment.prototype.renderCommentString = function(){
   var date = new Date(this.created_at);
   return `<li>"${this.content}" from ${moment(date).format('ll')}</li>`
 };
+
+//2. Must render at least one show page (show resource - 'one specific thing') via jQuery and an Active Model Serialization JSON Backend
+function loadBest(commentsLink){
+  $.get(`${commentsLink}`).success(function(comments){
+    if(comments.length > 0){
+      displayMostRecent(comments);
+    }
+    else{noComments()}
+  }).error(function(){alert("Loading Error!")});
+}
+
+function displayMostRecent(comments){
+  var index = comments.length - 1
+  var comment = comments[index]
+  var newComment = new Comment(comment.content, comment.created_at);
+  var nextButton = "<button id='next'>Next</button>";
+  $("div.most_recent").html("<ul><h5>Most Recent Review:</h5></ul>");
+  $("div.most_recent > ul").append(newComment.renderCommentString());
+  $("div.most_recent").append(nextButton);
+  $("button#next").on('click', function(){
+    if (index > 0){
+      index -= 1;
+      var comment = comments[index];
+      console.log(comment);
+      var newComment = new Comment(comment.content, comment.created_at);
+      $("div.most_recent > ul").html(newComment.renderCommentString());
+    }
+    else {
+      alert("There is no more review to show.")
+    };
+  });
+
+}

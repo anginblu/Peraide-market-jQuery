@@ -1,8 +1,10 @@
 <div id="Reviews">
   <p>
-    <button id=<%=profile_comments_path(@profile)%> class= "load_reviews">View Review</button><br>
+    <button id=<%=profile_comments_path(@profile)%> class= "load_reviews">View All Reviews</button> || <button id=<%=new_profile_comment_path(@profile)%> class= "most_recent">Show Most Recent</button><br>
     <%= render 'comments/index'%>
   </p>
+  <div class="most_recent">
+  </div>
   <p>
     <button id=<%=new_profile_comment_path(@profile)%> class= "add_review">Add Review</button><br>
     <div class="comments_form">
