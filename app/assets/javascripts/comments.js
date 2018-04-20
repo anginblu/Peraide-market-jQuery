@@ -2,6 +2,7 @@ $(function(){
   attachCommentsListeners();
 })
 
+//Use ES6 arrow functions
 function attachCommentsListeners() {
   $("button.load_reviews").on('click', () => clickLoad());
   $("button.add_review").on('click', () => clickAdd());
