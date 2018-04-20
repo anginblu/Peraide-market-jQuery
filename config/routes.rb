@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   get 'signin', to: 'sessions#new', as: 'signin'
+  get 'categories/:id/best_profile', to: 'categories#best', as: 'best_profile'
+
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
 

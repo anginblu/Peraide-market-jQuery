@@ -3,7 +3,7 @@
 
 <h5>
 <div class="field">
-  <% best_profile(@category).each do |profile| %>
+  <% @profile.each do |profile| %>
     <li>
       <%= link_to profile.title, profile %>
     </li><br>

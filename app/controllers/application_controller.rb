@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
     category.profiles.currently_available.cheapest
   end
 
+
   helper_method :current_user, :logged_in?, :valid_user?, :best_profile
 
 

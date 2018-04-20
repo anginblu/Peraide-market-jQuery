@@ -3,9 +3,13 @@
   <h4>Relevant User Profiles:</h4>
     <%= render "profiles/list" %><br>
 
-
-  <% if best_profile(@category) %>
-    <%= render "categories/best" %><br>
-  <% end %>
-
 </div>
+
+<div id="profile">
+  <% if @profiles %>
+  <p>
+    <% @profiles.each do |profile| %>
+      <button id=<%=best_profile_path(profile)%> class= "show_profile">View the best profile</button><br>
+    <% end %>
+  </p>
+  <% end %>
