@@ -1,9 +1,7 @@
 # Peraide for professional profiles offering services
 
 ## Overview
-Online directory where viewers can find job seekers' profiles by job category.  
-
-## Instructions
+Online directory where viewers can find job seekers' profiles by job category & where viewers(potential & existing employees) can add/view reviews of job seekers' profiles.
 
 ### Users
 1. Have name, email, password
@@ -12,6 +10,7 @@ Online directory where viewers can find job seekers' profiles by job category.
 4. has_many :profiles_categories, through: :profile
 5. has_many :categories, through: :profiles_categories
 6. has_many :skills, through: profiles
+7. has_many :comments
 
 ### Profiles
 1. Have hourly rate, and availability (date from)
@@ -19,7 +18,8 @@ Online directory where viewers can find job seekers' profiles by job category.
 3. has_many :profiles_categories
 4. has_many :categories, through: :profiles_categories
 5. has_many :skills
-6. Allows a scope method: Profile.cheapest.currently_available = User.cheapest + currently_available
+6. has_many :comments
+7. Allows a scope method: Profile.cheapest.currently_available = User.cheapest + currently_available
 
 ### Profiles_categories
 1.	belongs_to :profile
@@ -36,27 +36,23 @@ Online directory where viewers can find job seekers' profiles by job category.
 3. belongs_to :user, through: profile
 4. Enables nested_attributes
 
-## Installation
+### Comments
+1. Have a content, created_at
+2. belongs_to :profile
+3. belongs_to :user
+4. utilizes jQuery and an Active Model Serialization JSON Backend
+5. JSON formatted index and show pages
+
+##Installation
 1. Fork and clone repo
 2. Migrate db
 3. Bundle install
 
-
-
-For more information, check out [`:class_name`][class_name] and [`:foreign_key`][foreign_key] in the RailsGuides entry on [Active Record Associations][RailsGuides], this [StackOverflow post][StackOverflow], and the `models/post.rb` section in this [SitePoint refresher][SitePoint].
+##License
+Refer to: Peraide-market-jQuery/LICENSE.md
 
 ## Resources
-* [RailsGuides — Active Record Associations][RailsGuides]
-  - [`:class_name`][class_name]
-  - [`:foreign_key`][foreign_key]
-* [StackOverflow — class_name foreign_key in Rails model][StackOverflow]
-* [SitePoint — Brush up your knowledge of Rails associations][SitePoint]
-* [Video: Lab Review](https://www.youtube.com/watch?v=x_qQCnYPyBk)
+Refer to: Peraide-market-jQuery/RESOURCES.md
 
-[RailsGuides]: http://guides.rubyonrails.org/association_basics.html
-[class_name]: http://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-class-name
-[foreign_key]: http://guides.rubyonrails.org/association_basics.html#options-for-belongs-to-foreign-key
-[StackOverflow]: https://stackoverflow.com/a/41135173
-[SitePoint]: https://www.sitepoint.com/brush-up-your-knowledge-of-rails-associations/
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/flatiron-store-project'>Flatiron Store Project</a> on Learn.co and start learning to code for free.</p>
+##contribution
+Refer to: Peraide-market-jQuery/CONTRIBUTING.md
