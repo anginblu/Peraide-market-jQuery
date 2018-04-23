@@ -6,8 +6,9 @@
 </div>
 
 <div id="profile">
-  <% if @profiles.size > 0 %>
+  <% if @profiles %>
   <p>
-    <button id=<%=best_profile_path(@profiles.first)%> class= "show_profile">View the best profile</button><br>
+    <button id=<%=best_profile_path(@category)%> class= "show_profile">View the best profile</button><br>
   </p>
   <% end %>
+</div>

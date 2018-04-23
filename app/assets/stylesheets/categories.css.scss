@@ -1,3 +1,44 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div #best_profile
+{
+  padding: 10px;
+  width: 450px;
+  border: 1px solid blue;
+
+}
+
+div #Info
+{
+  padding: 10px;
+  width: 450px;
+  text-align: center;
+
+  /* Move it to the right */
+  float: center;
+
+  /* For visibility. Delete me */
+  border: 1px solid blue;
+
+}
+
+div #Info strong
+{
+  /* Give it a width */
+  display: inline-block;
+  width: 120px;
+
+  /* For visibility. Delete me */
+  border: 1px solid orange;
+}
+
+div #Info span
+{
+  /* Give it a width */
+  display: inline-block;
+  width: 300px;
+
+/* For visibility. Delete me */
+  border: 1px solid purple;
+}

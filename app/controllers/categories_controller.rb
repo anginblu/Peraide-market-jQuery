@@ -15,9 +15,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @profiles = best_profile(@category)
     @profile = @profiles.first
-    render json:@profile
+    # render json:@profile
     # binding.pry
     # @profile = @profiles.first
-    # render layout:false
+    render layout:false
   end
 end
