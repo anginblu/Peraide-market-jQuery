@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def best_profile(category)
-    category.profiles.currently_available.cheapest
+    category.profiles.currently_available.cheapest.to_a
   end
 
 
