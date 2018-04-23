@@ -1,4 +1,4 @@
-<h2><%= @profile.title %> by '<%= @profile.user.name %>' </h2>
+<h2><%= link_to @profile.title, controller: "profiles", action: "show", id: @profile %> by '<%= @profile.user.name %>' </h2>
 
 <div id="Info">
   <p>
