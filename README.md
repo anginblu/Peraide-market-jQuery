@@ -49,10 +49,10 @@ Online directory where viewers can find job seekers' profiles by job category & 
 3. Bundle install
 
 ##License
-Refer to: Peraide-market-jQuery/LICENSE.md
+Refer to: [Peraide-market-jQuery/LICENSE.md]
 
 ## Resources
-Refer to: Peraide-market-jQuery/RESOURCES.md
+Refer to: [Peraide-market-jQuery/RESOURCES.md]
 
 ##contribution
-Refer to: Peraide-market-jQuery/CONTRIBUTING.md
+Refer to: [Peraide-market-jQuery/CONTRIBUTING.md]
